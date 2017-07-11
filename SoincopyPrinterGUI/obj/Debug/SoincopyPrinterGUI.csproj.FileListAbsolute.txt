@@ -1,0 +1,9 @@
+c:\users\eduardo\documents\visual studio 2017\Projects\SoincopyPrinterGUI\SoincopyPrinterGUI\obj\Debug\SoincopyPrinterGUI.Form1.resources
+c:\users\eduardo\documents\visual studio 2017\Projects\SoincopyPrinterGUI\SoincopyPrinterGUI\obj\Debug\SoincopyPrinterGUI.Properties.Resources.resources
+c:\users\eduardo\documents\visual studio 2017\Projects\SoincopyPrinterGUI\SoincopyPrinterGUI\obj\Debug\SoincopyPrinterGUI.csproj.GenerateResource.Cache
+c:\users\eduardo\documents\visual studio 2017\Projects\SoincopyPrinterGUI\SoincopyPrinterGUI\bin\Debug\SoincopyPrinterGUI.exe
+c:\users\eduardo\documents\visual studio 2017\Projects\SoincopyPrinterGUI\SoincopyPrinterGUI\bin\Debug\SoincopyPrinterGUI.pdb
+c:\users\eduardo\documents\visual studio 2017\Projects\SoincopyPrinterGUI\SoincopyPrinterGUI\bin\Debug\MySql.Data.dll
+c:\users\eduardo\documents\visual studio 2017\Projects\SoincopyPrinterGUI\SoincopyPrinterGUI\bin\Debug\MySql.Data.xml
+c:\users\eduardo\documents\visual studio 2017\Projects\SoincopyPrinterGUI\SoincopyPrinterGUI\obj\Debug\SoincopyPrinterGUI.exe
+c:\users\eduardo\documents\visual studio 2017\Projects\SoincopyPrinterGUI\SoincopyPrinterGUI\obj\Debug\SoincopyPrinterGUI.pdb
