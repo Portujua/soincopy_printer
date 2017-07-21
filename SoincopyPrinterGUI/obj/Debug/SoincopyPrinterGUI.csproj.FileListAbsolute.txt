@@ -7,3 +7,4 @@ c:\users\eduardo\documents\visual studio 2017\Projects\SoincopyPrinterGUI\Soinco
 c:\users\eduardo\documents\visual studio 2017\Projects\SoincopyPrinterGUI\SoincopyPrinterGUI\bin\Debug\MySql.Data.xml
 c:\users\eduardo\documents\visual studio 2017\Projects\SoincopyPrinterGUI\SoincopyPrinterGUI\obj\Debug\SoincopyPrinterGUI.exe
 c:\users\eduardo\documents\visual studio 2017\Projects\SoincopyPrinterGUI\SoincopyPrinterGUI\obj\Debug\SoincopyPrinterGUI.pdb
+C:\Users\Eduardo\documents\visual studio 2017\Projects\SoincopyPrinterGUI\SoincopyPrinterGUI\obj\Debug\SoincopyPrinterGUI.csprojResolveAssemblyReference.cache

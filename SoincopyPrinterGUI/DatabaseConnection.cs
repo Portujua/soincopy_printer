@@ -9,26 +9,45 @@ namespace SoincopyPrinterGUI
 {
     class DatabaseConnection
     {
-        private static string host = "localhost";
-        private static string user = "root";
-        private static string password = "21115476";
-        private static string database = "soincopy";
+        public static string HOST = "localhost";
+        public static string USER = "root";
+        public static string PASSWORD = "21115476";
+        public static string DATABASE = "soincopy";
 
         private string connectionString;
         private MySqlConnection connection;
         private string lastQuery;
+        private string errorMessage;
 
         public DatabaseConnection()
         {
             this.connectionString = DatabaseConnection.getConnectionString();
         }
 
+        public DatabaseConnection(string host, string user, string password, string database)
+        {
+            this.connectionString = DatabaseConnection.getConnectionString(host, user, password, database);
+        }
+
         public ConnectionState connect()
         {
             this.connection = new MySqlConnection(this.connectionString);
-            this.connection.Open();
+
+            try {
+                this.connection.Open();
+            }
+            catch (MySqlException ex)
+            {
+                this.errorMessage = "No se pudo establecer conexión con el servidor MySQL.";
+            }
+            
 
             return this.connection.State;
+        }
+
+        public string getLastError()
+        {
+            return this.errorMessage != null ? this.errorMessage : String.Empty;
         }
 
         public bool isConnected()
@@ -72,7 +91,8 @@ namespace SoincopyPrinterGUI
 
             if (!reader.HasRows)
             {
-                throw new Exception("Factura inexistente");
+                reader.Close();
+                throw new UnexistantBillException("Factura inexistente");
             }
 
             while (reader.Read())
@@ -87,12 +107,48 @@ namespace SoincopyPrinterGUI
             return r;
         }
 
+        public void changeConnection(string host, string user, string password, string database)
+        {
+            if (this.connection.State == ConnectionState.Open)
+            {
+                this.connection.Close();
+                this.connectionString = DatabaseConnection.getConnectionString(host, user, password, database);
+                this.connect();
+            }
+        }
+
         public static string getConnectionString()
         {
-            return "host=" + DatabaseConnection.host + ";"
-                + "user=" + DatabaseConnection.user + ";"
-                + "password=" + DatabaseConnection.password + ";"
-                + "database=" + DatabaseConnection.database + ";";
+            return "host=" + DatabaseConnection.HOST + ";"
+                + "user=" + DatabaseConnection.USER + ";"
+                + "password=" + DatabaseConnection.PASSWORD + ";"
+                + "database=" + DatabaseConnection.DATABASE + ";";
         }
+
+        public static string getConnectionString(string host, string user, string password, string database)
+        {
+            return "host=" + host + ";"
+                + "user=" + user + ";"
+                + "password=" + password + ";"
+                + "database=" + database + ";";
+        }
+    }
+
+    class UnexistantBillException : Exception
+    {
+        public UnexistantBillException()
+            : base() { }
+
+        public UnexistantBillException(string message)
+            : base(message) { }
+
+        public UnexistantBillException(string format, params object[] args)
+            : base(string.Format(format, args)) { }
+
+        public UnexistantBillException(string message, Exception innerException)
+            : base(message, innerException) { }
+
+        public UnexistantBillException(string format, Exception innerException, params object[] args)
+            : base(string.Format(format, args), innerException) { }
     }
 }

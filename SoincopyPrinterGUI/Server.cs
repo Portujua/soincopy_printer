@@ -22,6 +22,7 @@ namespace SoincopyPrinterGUI
         private DatabaseConnection dbc;
         public int ultimaFactura = -1;
         private bool _isRunning;
+        private string lastResponse;
 
         public Server(string host)
         {
@@ -79,19 +80,25 @@ namespace SoincopyPrinterGUI
                 {
                     int factura = Convert.ToInt32(m.Groups[1].ToString());
                     this.ultimaFactura = factura;
-                    Debug.WriteLine("La factura es la #" + factura);
                     responseString = "Imprimiendo factura #" + factura;
 
                     try
                     {
                         this.dbc.prepare("select * from Pago_Pedido where id=" + factura);
                         double totalFactura = Convert.ToDouble(this.dbc.getFieldResult("total"));
-                        //Debug.WriteLine("El monto total de la factura #" + factura + " fue de Bs. " + totalFactura);
+                    }
+                    catch (UnexistantBillException ex)
+                    {
+                        responseString = string.Format("{0} (#{1})",
+                            ex.Message,
+                            factura);
                     }
                     catch (Exception ex)
                     {
                         responseString = "Ha ocurrido un error. (" + ex.Message + ")";
                     }
+
+                    this.lastResponse = responseString;
                 }
                 else
                 {
@@ -144,6 +151,14 @@ namespace SoincopyPrinterGUI
             }
 
             return string.Empty;
+        }
+
+        public string getLastResponse()
+        {
+            string a = this.lastResponse;
+            this.lastResponse = String.Empty;
+
+            return a;
         }
     }
 }
